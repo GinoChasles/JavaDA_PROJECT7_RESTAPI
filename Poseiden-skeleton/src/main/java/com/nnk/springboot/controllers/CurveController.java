@@ -1,6 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.service.CurvePointService;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +16,19 @@ import javax.validation.Valid;
 @Controller
 public class CurveController {
     // TODO: Inject Curve Point service
+    private final CurvePointService curvePointService;
+
+    public CurveController(
+        final CurvePointService curvePointServiceParam) {
+        curvePointService = curvePointServiceParam;
+    }
 
     @RequestMapping("/curvePoint/list")
     public String home(Model model)
     {
         // TODO: find all Curve Point, add to model
+        List<CurvePoint> curvePointListLocal = curvePointService.findAll();
+        model.addAttribute("curvePointList", curvePointListLocal);
         return "curvePoint/list";
     }
 
@@ -30,12 +40,16 @@ public class CurveController {
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list
+        List<CurvePoint> curvePointListLocal = curvePointService.insert(curvePoint);
+        model.addAttribute("curvePointList", curvePointListLocal);
         return "curvePoint/add";
     }
 
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get CurvePoint by Id and to model then show to the form
+        CurvePoint curvePointLocal = curvePointService.getCurvePointById(id);
+        model.addAttribute("curvePoint", curvePointLocal);
         return "curvePoint/update";
     }
 
@@ -43,12 +57,16 @@ public class CurveController {
     public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
-        return "redirect:/curvePoint/list";
+       List<CurvePoint> curvePointListLocal = curvePointService.update(id, curvePoint);
+       model.addAttribute("curvePointList", curvePointListLocal);
+       return "redirect:/curvePoint/list";
     }
 
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
+        List<CurvePoint> curvePointListLocal = curvePointService.delete(id);
+        model.addAttribute("curvePointList", curvePointListLocal);
         return "redirect:/curvePoint/list";
     }
 }

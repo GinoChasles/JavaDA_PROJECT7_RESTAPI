@@ -65,4 +65,148 @@ public class Trade {
   public void setType(final String typeParam) {
     type = typeParam;
   }
+
+  public double getBuyQuantity() {
+    return buyQuantity;
+  }
+
+  public void setBuyQuantity(final double buyQuantityParam) {
+    buyQuantity = buyQuantityParam;
+  }
+
+  public double getSellQuantity() {
+    return sellQuantity;
+  }
+
+  public void setSellQuantity(final double sellQuantityParam) {
+    sellQuantity = sellQuantityParam;
+  }
+
+  public double getBuyPrice() {
+    return buyPrice;
+  }
+
+  public void setBuyPrice(final double buyPriceParam) {
+    buyPrice = buyPriceParam;
+  }
+
+  public double getSellPrice() {
+    return sellPrice;
+  }
+
+  public void setSellPrice(final double sellPriceParam) {
+    sellPrice = sellPriceParam;
+  }
+
+  public String getBenchmark() {
+    return benchmark;
+  }
+
+  public void setBenchmark(final String benchmarkParam) {
+    benchmark = benchmarkParam;
+  }
+
+  public Timestamp getTradeDate() {
+    return tradeDate;
+  }
+
+  public void setTradeDate(final Timestamp tradeDateParam) {
+    tradeDate = tradeDateParam;
+  }
+
+  public String getSecurity() {
+    return security;
+  }
+
+  public void setSecurity(final String securityParam) {
+    security = securityParam;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(final String statusParam) {
+    status = statusParam;
+  }
+
+  public String getTrader() {
+    return trader;
+  }
+
+  public void setTrader(final String traderParam) {
+    trader = traderParam;
+  }
+
+  public String getBook() {
+    return book;
+  }
+
+  public void setBook(final String bookParam) {
+    book = bookParam;
+  }
+
+  public String getCreationName() {
+    return creationName;
+  }
+
+  public void setCreationName(final String creationNameParam) {
+    creationName = creationNameParam;
+  }
+
+  public Timestamp getCreationDate() {
+    return creationDate;
+  }
+
+  public void setCreationDate(final Timestamp creationDateParam) {
+    creationDate = creationDateParam;
+  }
+
+  public String getRevisionName() {
+    return revisionName;
+  }
+
+  public void setRevisionName(final String revisionNameParam) {
+    revisionName = revisionNameParam;
+  }
+
+  public Timestamp getRevisionDate() {
+    return revisionDate;
+  }
+
+  public void setRevisionDate(final Timestamp revisionDateParam) {
+    revisionDate = revisionDateParam;
+  }
+
+  public String getDealName() {
+    return dealName;
+  }
+
+  public void setDealName(final String dealNameParam) {
+    dealName = dealNameParam;
+  }
+
+  public String getDealType() {
+    return dealType;
+  }
+
+  public void setDealType(final String dealTypeParam) {
+    dealType = dealTypeParam;
+  }
+
+  public String getSourceListId() {
+    return sourceListId;
+  }
+
+  public void setSourceListId(final String sourceListIdParam) {
+    sourceListId = sourceListIdParam;
+  }
+
+  public String getSide() {
+    return side;
+  }
+
+  public void setSide(final String sideParam) {
+    side = sideParam;
+  }
 }

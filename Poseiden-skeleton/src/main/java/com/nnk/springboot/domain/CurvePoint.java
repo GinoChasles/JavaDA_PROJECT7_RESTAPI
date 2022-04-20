@@ -18,6 +18,9 @@ public class CurvePoint {
   private Integer curveId;
   private double term;
   private double value;
+  private Timestamp asOfDate;
+  private Timestamp creationDate;
+
 
   public CurvePoint(final Integer curveIdParam, final double termParam, final double valueParam) {
     curveId = curveIdParam;
@@ -54,6 +57,22 @@ public class CurvePoint {
 
   public double getValue() {
     return value;
+  }
+
+  public Timestamp getAsOfDate() {
+    return asOfDate;
+  }
+
+  public void setAsOfDate(final Timestamp asOfDateParam) {
+    asOfDate = asOfDateParam;
+  }
+
+  public Timestamp getCreationDate() {
+    return creationDate;
+  }
+
+  public void setCreationDate(final Timestamp creationDateParam) {
+    creationDate = creationDateParam;
   }
 
   public void setValue(final double valueParam) {
