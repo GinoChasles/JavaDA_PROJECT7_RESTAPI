@@ -18,6 +18,27 @@
 			<!--
 			TODO: Create a form to input the values of Bid, there are 2 buttons: Save data and Cancel to the list Bid
 			 -->
+			<div class="form-group">
+
+			<label for="account">Account</label>
+			<input type="text" id="account" placeholder="Account"
+				   required th:field="*{account}">
+
+			<label for="type">Type</label>
+			<input type="text" id="type" placeholder="Type"
+				   required th:field="*{type}">
+
+			<label for="bidQuantity">Bid Quantity</label>
+			<input type="text" id="bidQuantity" placeholder="Bid Quantity"
+				   required th:field="*{bidQuantity}">
+
+			<button type="reset" class="btn btn-primary" >Cancel</button>
+			<button type="submit" class="btn btn-primary">Add BidList</button>
+
+
+			</div>
+
+
 		</form>
 	</div>
 

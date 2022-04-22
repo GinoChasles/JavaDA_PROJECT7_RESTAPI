@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer BidListId;
 
   private String account;
@@ -53,12 +53,20 @@ public class BidList {
     bidQuantity = bidQuantityParam;
   }
 
-  public int getBidListId() {
+  public Integer getBidListId() {
     return BidListId;
   }
 
-  public void setBidListId(final int bidListIdParam) {
-    BidListId = bidListIdParam;
+  public void setAskQuantity(final double askQuantityParam) {
+    askQuantity = askQuantityParam;
+  }
+
+  public void setBid(final double bidParam) {
+    bid = bidParam;
+  }
+
+  public void setAsk(final double askParam) {
+    ask = askParam;
   }
 
   public String getAccount() {

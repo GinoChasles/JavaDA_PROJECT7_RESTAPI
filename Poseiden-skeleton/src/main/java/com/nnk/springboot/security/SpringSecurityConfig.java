@@ -84,3 +84,64 @@
 //  }
 //}
 //
+package com.nnk.springboot.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.nnk.springboot.service.CustomUserDetailsService;
+
+@Configuration
+@EnableWebSecurity
+class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+  @Bean
+  public UserDetailsService userDetailsService() {
+    return new CustomUserDetailsService();
+  }
+  @Bean
+  public BCryptPasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  public DaoAuthenticationProvider authenticationProvider() {
+    DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+    auth.setUserDetailsService(userDetailsService());
+    auth.setPasswordEncoder(passwordEncoder());
+    return auth;
+  }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.authenticationProvider(authenticationProvider());
+  }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception{
+    http
+        .authorizeRequests()
+        .antMatchers("/css/**", "/static/**", "/favicon.ico").permitAll()
+        // Users having either a USER or ADMIN role are authorized to access and manage (Create, Read, Update, Delete) financial entities (BidList, CurvePoint, Rating, RuleName and Trade)
+        .antMatchers("/", "/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("USER", "ADMIN")
+        // Only users having a ADMIN role are authorized to access and manage (Create, Read, Update, Delete) Users
+        .antMatchers("/user/**", "/admin/home").hasAuthority("ADMIN")
+        .anyRequest().authenticated()
+        .and()
+        .formLogin()
+        .defaultSuccessUrl("/bidList/list", true)
+        .permitAll()
+        .and()
+        .logout()
+        .logoutUrl("/app-logout")
+        .logoutSuccessUrl("/")
+        .invalidateHttpSession(true)
+        .clearAuthentication(true)
+        .permitAll();
+  }
+}

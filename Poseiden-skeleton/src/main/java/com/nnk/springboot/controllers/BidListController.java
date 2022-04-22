@@ -41,7 +41,7 @@ public class BidListController {
         // TODO: check data valid and save to db, after saving return bid list
         List<BidList> bidListListLocal = bidListService.insert(bid);
         model.addAttribute("bidList", bidListListLocal);
-        return "bidList/add";
+        return "redirect:/bidList/add";
     }
 
     @GetMapping("/bidList/update/{id}")
