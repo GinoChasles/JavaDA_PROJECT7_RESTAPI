@@ -8,30 +8,50 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "bidlist")
 public class BidList {
-    // TODO: Map columns in data table BIDLIST with corresponding java fields
+  // TODO: Map columns in data table BIDLIST with corresponding java fields
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "bid_list_id")
   private Integer BidListId;
 
+  @Column(name = "account")
   private String account;
+
+  @Column(name = "type")
   private String type;
+
+  @Column(name = "bid_quantity")
   private double bidQuantity;
+
+  @Column(name = "ask_quantity")
   private double askQuantity;
   private double bid;
   private double ask;
   private String benchmark;
+
+  @Column(name = "bid_list_date")
   private Timestamp bidListDate;
   private String commentary;
   private String security;
   private String status;
   private String trader;
   private String book;
+
+  @Column(name = "creation_name")
   private String creationName;
+
+  @Column(name = "creation_date")
   private Timestamp creationDate;
+
+  @Column(name = "revision_name")
   private String revisionName;
+
+  @Column(name = "revision_date")
   private Timestamp revisionDate;
   private String dealName;
   private String dealType;
+
+  @Column(name = "source_list_id")
   private String sourceListId;
   private String side;
 

@@ -127,9 +127,7 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http
         .authorizeRequests()
         .antMatchers("/css/**", "/static/**", "/favicon.ico").permitAll()
-        // Users having either a USER or ADMIN role are authorized to access and manage (Create, Read, Update, Delete) financial entities (BidList, CurvePoint, Rating, RuleName and Trade)
         .antMatchers("/", "/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("USER", "ADMIN")
-        // Only users having a ADMIN role are authorized to access and manage (Create, Read, Update, Delete) Users
         .antMatchers("/user/**", "/admin/home").hasAuthority("ADMIN")
         .anyRequest().authenticated()
         .and()
