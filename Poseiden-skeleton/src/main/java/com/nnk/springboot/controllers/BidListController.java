@@ -3,6 +3,8 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.service.BidListService;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,7 @@ import javax.validation.Valid;
 @Controller
 public class BidListController {
     private final BidListService bidListService;
+    private static final Logger logger = LoggerFactory.getLogger(BidListController.class);
 
     public BidListController(final BidListService bidListServiceParam) {
         bidListService = bidListServiceParam;
@@ -26,8 +29,10 @@ public class BidListController {
     public String home(Model model)
     {
         // TODO: call service find all bids to show to the view
+        logger.info("request get bidList/list");
         List<BidList> bidListListLocal = bidListService.findAll();
         model.addAttribute("bidList", bidListListLocal);
+        logger.info("bidList list found, return view");
         return "bidList/list";
     }
 
@@ -48,7 +53,7 @@ public class BidListController {
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Bid by Id and to model then show to the form
         BidList bidListLocal = bidListService.getBidListById(id);
-        model.addAttribute("bid", bidListLocal);
+        model.addAttribute("bidList", bidListLocal);
         return "bidList/update";
     }
 
