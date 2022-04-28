@@ -63,8 +63,8 @@ public class TradeServiceImpl implements TradeService{
   public List<Trade> update(final Integer id, final Trade tradeParam) {
     Trade tradeLocal = this.getTradeById(id);
     tradeLocal.setAccount(tradeParam.getAccount());
-    tradeLocal.setTradeId(tradeParam.getTradeId());
-    tradeLocal.setAccount(tradeParam.getAccount());
+    tradeLocal.setType(tradeParam.getType());
+    tradeLocal.setBuyQuantity(tradeParam.getBuyQuantity());
     repository.save(tradeLocal);
     return this.findAll();
   }
