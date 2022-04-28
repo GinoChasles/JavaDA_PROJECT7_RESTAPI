@@ -15,10 +15,16 @@ public class CurvePoint {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
+  @Column(name = "curve_id")
   private Integer curveId;
   private double term;
   private double value;
+
+  @Column(name = "as_of_date")
   private Timestamp asOfDate;
+
+  @Column(name = "creation_date")
   private Timestamp creationDate;
 
 
