@@ -132,7 +132,7 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated()
         .and()
         .formLogin()
-        .defaultSuccessUrl("/bidList/list", true)
+        .defaultSuccessUrl("/bidList/list")
         .permitAll()
         .and()
         .logout()
