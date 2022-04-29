@@ -69,6 +69,13 @@ public class Trade {
     type = typeParam;
   }
 
+  public Trade(Integer tradeId, String account, String type, double buyQuantity) {
+    this.tradeId = tradeId;
+    this.account = account;
+    this.type = type;
+    this.buyQuantity = buyQuantity;
+  }
+
   public Integer getTradeId() {
     return tradeId;
   }

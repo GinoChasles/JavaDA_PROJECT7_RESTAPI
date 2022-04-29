@@ -27,6 +27,12 @@ public class CurvePoint {
   @Column(name = "creation_date")
   private Timestamp creationDate;
 
+  public CurvePoint(Integer id, Integer curveId, double term, double value) {
+    this.id = id;
+    this.curveId = curveId;
+    this.term = term;
+    this.value = value;
+  }
 
   public CurvePoint(final Integer curveIdParam, final double termParam, final double valueParam) {
     curveId = curveIdParam;
