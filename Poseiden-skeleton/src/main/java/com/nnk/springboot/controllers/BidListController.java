@@ -38,22 +38,27 @@ public class BidListController {
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+        logger.info("get add page view");
         return "bidList/add";
     }
 
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
+        logger.info("starting post bid");
         List<BidList> bidListListLocal = bidListService.insert(bid);
         model.addAttribute("bidList", bidListListLocal);
-        return "redirect:/bidList/add";
+        logger.info("redirect to bid list view");
+        return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Bid by Id and to model then show to the form
+        logger.info("starting get bid to update");
         BidList bidListLocal = bidListService.getBidListById(id);
         model.addAttribute("bidList", bidListLocal);
+        logger.info("return to update bid view");
         return "bidList/update";
     }
 
@@ -61,16 +66,20 @@ public class BidListController {
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
+        logger.info("starting perform update bid");
         List<BidList> bidListListLocal = bidListService.update(id, bidList);
         model.addAttribute("bidList", bidListListLocal);
+        logger.info("return to bid list view");
         return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
+        logger.info("perform delete bid");
         List<BidList> bidListListLocal = bidListService.delete(id);
         model.addAttribute("bidList", bidListListLocal);
+        logger.info("return to bid list view");
         return "redirect:/bidList/list";
     }
 }

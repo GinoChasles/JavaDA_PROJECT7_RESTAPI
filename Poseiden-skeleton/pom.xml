@@ -135,7 +135,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										com.gino.paymybuddy.PaymybuddyApplication
+										com.nnk.springboot.Application
 									</mainClass>
 								</manifest>
 							</archive>

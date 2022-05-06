@@ -18,6 +18,7 @@ public class CurvePoint {
 
   @Column(name = "curve_id")
   private Integer curveId;
+
   private double term;
   private double value;
 

@@ -1,0 +1,56 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.service.BidListServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 1.302 s <<< FAILURE! - in com.nnk.springboot.service.BidListServiceImplTest
+getBidListByIdTest  Time elapsed: 1.213 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: interface com.nnk.springboot.repositories.BidListRepository.
+
+Mockito can only mock non-private & non-final classes.
+If you're not sure why you're getting this error, please report to the mailing list.
+
+
+Java               : 11
+JVM vendor name    : AdoptOpenJDK
+JVM vendor version : 11.0.8+10
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 11.0.8+10
+JVM info           : mixed mode
+OS name            : Windows 10
+OS version         : 10.0
+
+
+Underlying exception : java.lang.UnsupportedOperationException: Cannot define class using reflection
+Caused by: java.lang.UnsupportedOperationException: Cannot define class using reflection
+Caused by: java.lang.IllegalStateException: Could not find sun.misc.Unsafe
+Caused by: java.lang.NoSuchMethodException: sun.misc.Unsafe.defineClass(java.lang.String, [B, int, int, java.lang.ClassLoader, java.security.ProtectionDomain)
+
+updateTest  Time elapsed: 0.015 s  <<< ERROR!
+org.mockito.exceptions.misusing.UnfinishedMockingSessionException: 
+
+Unfinished mocking session detected.
+Previous MockitoSession was not concluded with 'finishMocking()'.
+For examples of correct usage see javadoc for MockitoSession class.
+
+findAllTest  Time elapsed: 0.001 s  <<< ERROR!
+org.mockito.exceptions.misusing.UnfinishedMockingSessionException: 
+
+Unfinished mocking session detected.
+Previous MockitoSession was not concluded with 'finishMocking()'.
+For examples of correct usage see javadoc for MockitoSession class.
+
+insertTest  Time elapsed: 0.001 s  <<< ERROR!
+org.mockito.exceptions.misusing.UnfinishedMockingSessionException: 
+
+Unfinished mocking session detected.
+Previous MockitoSession was not concluded with 'finishMocking()'.
+For examples of correct usage see javadoc for MockitoSession class.
+
+deleteTest  Time elapsed: 0 s  <<< ERROR!
+org.mockito.exceptions.misusing.UnfinishedMockingSessionException: 
+
+Unfinished mocking session detected.
+Previous MockitoSession was not concluded with 'finishMocking()'.
+For examples of correct usage see javadoc for MockitoSession class.
+
