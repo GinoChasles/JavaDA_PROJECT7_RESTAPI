@@ -50,7 +50,10 @@ public class RuleNameController {
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return RuleName list
         logger.info("starting post rating");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            return "ruleName/add";
+        }
         List<RuleName> ruleNameListLocal = ruleNameService.insert(ruleName);
         model.addAttribute("ruleNameList", ruleNameListLocal);
         logger.info("return to ruleName list view");
@@ -75,7 +78,11 @@ public class RuleNameController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update RuleName and return RuleName list
         logger.info("starting update rating");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            ruleName.setId(id);
+            return "ruleName/update";
+        }
         List<RuleName> ruleNameListLocal = ruleNameService.update(id, ruleName);
         model.addAttribute("ruleNameList", ruleNameListLocal);
         logger.info("return to ruleName list view");

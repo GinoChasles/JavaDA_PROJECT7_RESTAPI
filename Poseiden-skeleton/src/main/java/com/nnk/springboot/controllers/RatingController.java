@@ -50,7 +50,10 @@ public class RatingController {
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Rating list
         logger.info("starting post rating");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            return "rating/add";
+        }
         List<Rating> ratingListLocal = ratingService.insert(rating);
         model.addAttribute("ratingList", ratingListLocal);
         logger.info("return to rating list view");
@@ -75,7 +78,11 @@ public class RatingController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Rating and return Rating list
         logger.info("starting update rating");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            rating.setId(id);
+            return "rating/update";
+        }
         List<Rating> ratingListLocal = ratingService.update(id, rating);
         model.addAttribute("ratingList", ratingListLocal);
         logger.info("return to rating list view");

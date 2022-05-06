@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.sql.Timestamp;
 
 @Entity
@@ -22,6 +23,7 @@ public class Rating {
   private String fitchRating;
 
   @Column(name = "order_number")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private Integer orderNumber;
 
   public Rating(final String moodysRatingParam, final String sandPRatingParam,

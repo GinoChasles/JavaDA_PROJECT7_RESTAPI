@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,6 +13,7 @@ public class BidList {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "bid_list_id")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private Integer BidListId;
 
   @Column(name = "account")
@@ -21,12 +23,19 @@ public class BidList {
   private String type;
 
   @Column(name = "bid_quantity")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double bidQuantity;
 
   @Column(name = "ask_quantity")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double askQuantity;
+
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double bid;
+
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double ask;
+
   private String benchmark;
 
   @Column(name = "bid_list_date")

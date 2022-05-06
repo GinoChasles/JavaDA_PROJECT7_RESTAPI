@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.sql.Timestamp;
 
 
@@ -17,9 +18,13 @@ public class CurvePoint {
   private Integer id;
 
   @Column(name = "curve_id")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private Integer curveId;
 
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double term;
+
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double value;
 
   @Column(name = "as_of_date")

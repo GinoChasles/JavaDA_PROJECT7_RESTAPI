@@ -46,6 +46,10 @@ public class BidListController {
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
         logger.info("starting post bid");
+        if (result.hasErrors()) {
+            logger.info("field error");
+            return "bidList/add";
+        }
         List<BidList> bidListListLocal = bidListService.insert(bid);
         model.addAttribute("bidList", bidListListLocal);
         logger.info("redirect to bid list view");
@@ -67,6 +71,11 @@ public class BidListController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
         logger.info("starting perform update bid");
+        if (result.hasErrors()) {
+            logger.info("field error");
+            bidList.setBidListId(id);
+            return "bidList/update";
+        }
         List<BidList> bidListListLocal = bidListService.update(id, bidList);
         model.addAttribute("bidList", bidListListLocal);
         logger.info("return to bid list view");

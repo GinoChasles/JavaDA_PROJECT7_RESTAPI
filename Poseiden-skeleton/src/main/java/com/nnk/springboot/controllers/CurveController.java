@@ -52,7 +52,10 @@ public class CurveController {
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list
         logger.info("starting post curvpoint");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            return "curvePoint/add";
+        }
         List<CurvePoint> curvePointListLocal = curvePointService.insert(curvePoint);
         model.addAttribute("curvePointList", curvePointListLocal);
         logger.info("return to curvePoint list view");
@@ -76,6 +79,13 @@ public class CurveController {
     public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
+        logger.info("starting updating curvpoint");
+
+        if (result.hasErrors()) {
+            logger.info("field error");
+            curvePoint.setId(id);
+            return "curvePoint/update";
+        }
        List<CurvePoint> curvePointListLocal = curvePointService.update(id, curvePoint);
        model.addAttribute("curvePointList", curvePointListLocal);
         logger.info("return to curvePoint list view");

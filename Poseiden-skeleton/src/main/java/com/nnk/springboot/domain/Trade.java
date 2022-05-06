@@ -2,6 +2,8 @@ package com.nnk.springboot.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.sql.Timestamp;
 
 
@@ -12,21 +14,26 @@ public class Trade {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "trade_id")
+  @Positive(message = "must be positive")
   private Integer tradeId;
 
   private String account;
   private String type;
   //TODO: validation
   @Column(name = "buy_quantity")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double buyQuantity;
 
   @Column(name = "sell_quantity")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double sellQuantity;
 
   @Column(name = "buy_price")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double buyPrice;
 
   @Column(name = "sell_price")
+  @PositiveOrZero(message = "must be positive or equals to 0")
   private double sellPrice;
 
   private String benchmark;

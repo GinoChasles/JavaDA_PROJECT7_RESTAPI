@@ -2,8 +2,6 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.service.TradeService;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class TradeController {
@@ -50,7 +49,10 @@ public class TradeController {
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Trade list
         logger.info("starting post trade");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            return "trade/add";
+        }
         List<Trade> tradeListLocal = tradeService.insert(trade);
         model.addAttribute("tradeList", tradeListLocal);
         logger.info("return to trade list view");
@@ -73,7 +75,11 @@ public class TradeController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Trade and return Trade list
         logger.info("starting updating trade");
-
+        if (result.hasErrors()) {
+            logger.info("field error");
+            trade.setTradeId(id);
+            return "trade/update";
+        }
         List<Trade> tradeLocal = tradeService.update(id, trade);
         model.addAttribute("tradeList", tradeLocal);
         logger.info("return to trade list view");
