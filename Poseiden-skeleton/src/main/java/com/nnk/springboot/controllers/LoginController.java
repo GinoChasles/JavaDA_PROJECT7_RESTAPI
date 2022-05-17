@@ -17,6 +17,7 @@ public class LoginController {
     private UserRepository userRepository;
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+
     @GetMapping("login")
     public ModelAndView login() {
         logger.info("get ligin view");
@@ -25,6 +26,11 @@ public class LoginController {
         logger.info("return login view");
         return mav;
     }
+//    @RequestMapping("/*")
+//    public String getGithub()
+//    {
+//        return "bidList/list";
+//    }
 
     @GetMapping("secure/article-details")
     public ModelAndView getAllUserArticles() {

@@ -86,8 +86,13 @@
 //
 package com.nnk.springboot.security;
 
+import com.nnk.springboot.service.CustomOAuth2User;
+import com.nnk.springboot.service.CustomUserDetailsService;
+import com.nnk.springboot.service.Oauth2Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -95,21 +100,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import com.nnk.springboot.service.CustomUserDetailsService;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean
   public UserDetailsService userDetailsService() {
     return new CustomUserDetailsService();
   }
+
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+
+  @Autowired
+  private Oauth2Service oauth2Service;
 
   @Bean
   public DaoAuthenticationProvider authenticationProvider() {
@@ -118,28 +126,67 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     auth.setPasswordEncoder(passwordEncoder());
     return auth;
   }
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.authenticationProvider(authenticationProvider());
+//    auth.authenticationProvider(authenticationProvider());
+    auth.inMemoryAuthentication();
+    auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
   }
   @Override
   protected void configure(HttpSecurity http) throws Exception{
+    http.cors().and().csrf().disable();
     http
-        .authorizeRequests()
-        .antMatchers("/css/**", "/static/**", "/favicon.ico").permitAll()
-        .antMatchers("/", "/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("USER", "ADMIN")
-        .antMatchers("/user/**", "/admin/home").hasAuthority("ADMIN")
-        .anyRequest().authenticated()
-        .and()
-        .formLogin()
-        .defaultSuccessUrl("/bidList/list")
-        .permitAll()
-        .and()
-        .logout()
-        .logoutUrl("/app-logout")
-        .logoutSuccessUrl("/")
-        .invalidateHttpSession(true)
-        .clearAuthentication(true)
-        .permitAll();
+            .authorizeRequests()
+            .antMatchers("/img/**").permitAll()
+            .antMatchers("/register/**").permitAll()
+            .antMatchers("/login/**").permitAll()
+            .antMatchers("/validate").permitAll()
+            .antMatchers("/css/**", "/static/**", "/favicon.ico").permitAll()
+            .antMatchers("/", "/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("USER", "ADMIN")
+            .antMatchers("/user/**", "/admin/home").hasAuthority("ADMIN")
+            .antMatchers("/oauth2/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin().permitAll()
+            .loginPage("/app/login")
+              .defaultSuccessUrl("/bidList/list")
+            .and()
+            .oauth2Login()
+            .loginPage("/app/login")
+              .userInfoEndpoint()
+                .userService(oauth2Service)
+            .and()
+            .defaultSuccessUrl("/bidList/list")
+            .permitAll()
+    ;
+//    http
+//              .logout()
+//              .logoutUrl("/app-logout")
+//              .logoutSuccessUrl("/")
+//              .deleteCookies("JSESSIONID")
+//              .invalidateHttpSession(true)
+//              .clearAuthentication(true)
+//              .permitAll()
+//
+//    ;
+//    http.authorizeRequests()
+//            .antMatchers("/", "/login").permitAll()
+//            .anyRequest().authenticated()
+//            .and()
+//            .formLogin().permitAll()
+//            .loginPage("/login")
+//            .and()
+//            .oauth2Login()
+//            .loginPage("/login")
+//            .userInfoEndpoint()
+//            .userService(oauth2Service)
+//            .and()
+//            .logout().logoutSuccessUrl("/").permitAll();
+  }
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception{
+    return super.authenticationManagerBean();
   }
 }
