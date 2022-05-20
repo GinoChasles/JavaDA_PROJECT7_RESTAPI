@@ -48,6 +48,8 @@ public class TradeServiceImpl implements TradeService{
     Trade result = new Trade();
     if(tradeOptionalLocal.isPresent()) {
       result = tradeOptionalLocal.get();
+    } else {
+      throw new IllegalArgumentException("Invalid id:" + id);
     }
     return result;
   }

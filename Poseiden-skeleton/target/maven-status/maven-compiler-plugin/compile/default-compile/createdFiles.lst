@@ -16,7 +16,6 @@ com\nnk\springboot\domain\RuleName.class
 com\nnk\springboot\domain\CurvePoint.class
 com\nnk\springboot\controllers\HomeController.class
 com\nnk\springboot\service\CustomUserDetailsService.class
-com\nnk\springboot\security\SecurityConfiguration.class
 com\nnk\springboot\domain\User.class
 com\nnk\springboot\repositories\TradeRepository.class
 com\nnk\springboot\repositories\BidListRepository.class

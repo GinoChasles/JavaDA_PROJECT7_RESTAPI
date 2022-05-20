@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TradeServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.service</a> &gt; <span class="el_source">TradeServiceImpl.java</span></div><h1>TradeServiceImpl.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.service;
+
+import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.repositories.TradeRepository;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TradeServiceImpl implements TradeService{
+  final TradeRepository repository;
+
+<span class="fc" id="L13">  public TradeServiceImpl(final TradeRepository repositoryParam) {</span>
+<span class="fc" id="L14">    repository = repositoryParam;</span>
+<span class="fc" id="L15">  }</span>
+
+  /**
+   * Find all list.
+   *
+   * @return the list
+   */
+  @Override
+  public List&lt;Trade&gt; findAll() {
+<span class="fc" id="L24">    return repository.findAll();</span>
+  }
+
+  /**
+   * Insert list.
+   *
+   * @param tradeParam the trade param
+   * @return the list
+   */
+  @Override
+  public List&lt;Trade&gt; insert(final Trade tradeParam) {
+<span class="fc" id="L35">    repository.save(tradeParam);</span>
+<span class="fc" id="L36">    return this.findAll();</span>
+  }
+
+  /**
+   * Gets trade by id.
+   *
+   * @param id the id
+   * @return the trade by id
+   */
+  @Override
+  public Trade getTradeById(final Integer id) {
+<span class="fc" id="L47">    Optional&lt;Trade&gt; tradeOptionalLocal = repository.findById(id);</span>
+<span class="fc" id="L48">    Trade result = new Trade();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">    if(tradeOptionalLocal.isPresent()) {</span>
+<span class="fc" id="L50">      result = tradeOptionalLocal.get();</span>
+    } else {
+<span class="fc" id="L52">      throw new IllegalArgumentException(&quot;Invalid id:&quot; + id);</span>
+    }
+<span class="fc" id="L54">    return result;</span>
+  }
+
+  /**
+   * Update list.
+   *
+   * @param id         the id
+   * @param tradeParam the trade param
+   * @return the list
+   */
+  @Override
+  public List&lt;Trade&gt; update(final Integer id, final Trade tradeParam) {
+<span class="fc" id="L66">    Trade tradeLocal = this.getTradeById(id);</span>
+<span class="fc" id="L67">    tradeLocal.setAccount(tradeParam.getAccount());</span>
+<span class="fc" id="L68">    tradeLocal.setType(tradeParam.getType());</span>
+<span class="fc" id="L69">    tradeLocal.setBuyQuantity(tradeParam.getBuyQuantity());</span>
+<span class="fc" id="L70">    repository.save(tradeLocal);</span>
+<span class="fc" id="L71">    return this.findAll();</span>
+  }
+
+  /**
+   * Delete list.
+   *
+   * @param id the id
+   * @return the list
+   */
+  @Override
+  public List&lt;Trade&gt; delete(final Integer id) {
+<span class="fc" id="L82">    Trade tradeLocal = this.getTradeById(id);</span>
+<span class="fc" id="L83">    repository.delete(tradeLocal);</span>
+<span class="fc" id="L84">    return this.findAll();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

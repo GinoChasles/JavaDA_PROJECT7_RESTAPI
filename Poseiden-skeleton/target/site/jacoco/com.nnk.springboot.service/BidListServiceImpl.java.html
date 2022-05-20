@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BidListServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.service</a> &gt; <span class="el_source">BidListServiceImpl.java</span></div><h1>BidListServiceImpl.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.service;
+
+import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.repositories.BidListRepository;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
+
+@Service
+
+public class BidListServiceImpl implements BidListService {
+
+  private final BidListRepository repository;
+
+<span class="fc" id="L15">  public BidListServiceImpl(final BidListRepository repositoryParam) {</span>
+<span class="fc" id="L16">    repository = repositoryParam;</span>
+<span class="fc" id="L17">  }</span>
+
+  /**
+   * Find all list.
+   *
+   * @return the list
+   */
+  @Override
+  public List&lt;BidList&gt; findAll() {
+<span class="fc" id="L26">    return repository.findAll();</span>
+  }
+
+  /**
+   * Gets bid list by id.
+   *
+   * @param id the id
+   * @return the bid list by id
+   */
+  @Override
+  public BidList getBidListById(final Integer id) {
+<span class="fc" id="L37">    Optional&lt;BidList&gt; optionalBidListLocal = repository.findById(id);</span>
+<span class="fc" id="L38">    BidList result = new BidList();</span>
+
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if(optionalBidListLocal.isPresent()) {</span>
+<span class="fc" id="L41">      result = optionalBidListLocal.get();</span>
+    } else {
+<span class="fc" id="L43">      throw new IllegalArgumentException(&quot;Invalid id:&quot; + id);</span>
+    }
+
+<span class="fc" id="L46">    return result;</span>
+  }
+
+  /**
+   * Update list.
+   *
+   * @param id           the id
+   * @param bidListParam the bid list param
+   * @return the list
+   */
+  @Override
+  public List&lt;BidList&gt; update(final Integer id, final BidList bidListParam) {
+<span class="fc" id="L58">    BidList bidListLocal = this.getBidListById(id);</span>
+<span class="fc" id="L59">    bidListLocal.setBidQuantity(bidListParam.getBidQuantity());</span>
+<span class="fc" id="L60">    bidListLocal.setAccount(bidListParam.getAccount());</span>
+<span class="fc" id="L61">    bidListLocal.setType(bidListParam.getType());</span>
+<span class="fc" id="L62">    repository.save(bidListLocal);</span>
+<span class="fc" id="L63">    List&lt;BidList&gt; bidListListLocal = this.findAll();</span>
+<span class="fc" id="L64">    return bidListListLocal;</span>
+  }
+
+  /**
+   * Insert list.
+   *
+   * @param bidListParam the bid list param
+   * @return the list
+   */
+  @Override
+  public List&lt;BidList&gt; insert(final BidList bidListParam) {
+<span class="fc" id="L75">    repository.save(bidListParam);</span>
+<span class="fc" id="L76">    List&lt;BidList&gt; bidListListLocal = this.findAll();</span>
+<span class="fc" id="L77">    return bidListListLocal;</span>
+  }
+
+  /**
+   * Delete list.
+   *
+   * @param id the id
+   * @return the list
+   */
+  @Override
+  public List&lt;BidList&gt; delete(final Integer id) {
+<span class="fc" id="L88">    BidList bidListLocal = this.getBidListById(id);</span>
+<span class="fc" id="L89">    repository.delete(bidListLocal);</span>
+<span class="fc" id="L90">    List&lt;BidList&gt; bidListListLocal = this.findAll();</span>
+<span class="fc" id="L91">    return bidListListLocal;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

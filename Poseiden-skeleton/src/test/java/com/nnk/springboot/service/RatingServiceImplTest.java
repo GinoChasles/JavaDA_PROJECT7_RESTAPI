@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -53,6 +54,12 @@ public class RatingServiceImplTest {
         when(ratingRepository.findById(anyInt())).thenReturn(Optional.of(rating));
         Rating result = ratingService.getRatingById(rating.getId());
         assertThat(result.getMoodysRating()).isEqualTo("Test");
+    }
+    @Test
+    public void getCurvePointByIdTest_ShouldThrowException() {
+        when(ratingRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IllegalArgumentException.class,()-> ratingService.getRatingById(1));
     }
     @Test
     public void updateTest() {

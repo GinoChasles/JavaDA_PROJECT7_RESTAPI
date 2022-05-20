@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RatingServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.service</a> &gt; <span class="el_source">RatingServiceImpl.java</span></div><h1>RatingServiceImpl.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.service;
+
+import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.repositories.RatingRepository;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
+
+@Service
+
+public class RatingServiceImpl implements RatingService{
+  final RatingRepository repository;
+
+<span class="fc" id="L14">  public RatingServiceImpl(final RatingRepository repositoryParam) {</span>
+<span class="fc" id="L15">    repository = repositoryParam;</span>
+<span class="fc" id="L16">  }</span>
+
+  /**
+   * Find all list.
+   *
+   * @return the list
+   */
+  @Override
+  public List&lt;Rating&gt; findAll() {
+<span class="fc" id="L25">    return repository.findAll();</span>
+  }
+
+  /**
+   * Insert list.
+   *
+   * @param ratingParam the rating param
+   * @return the list
+   */
+  @Override
+  public List&lt;Rating&gt; insert(final Rating ratingParam) {
+<span class="fc" id="L36">    repository.save(ratingParam);</span>
+<span class="fc" id="L37">    return this.findAll();</span>
+  }
+
+  /**
+   * Gets rating by id.
+   *
+   * @param id the id
+   * @return the rating by id
+   */
+  @Override
+  public Rating getRatingById(final Integer id) {
+<span class="fc" id="L48">    Optional&lt;Rating&gt; optionalRatingLocal = repository.findById(id);</span>
+<span class="fc" id="L49">    Rating result = new Rating();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">    if(optionalRatingLocal.isPresent()) {</span>
+<span class="fc" id="L51">      result = optionalRatingLocal.get();</span>
+    } else {
+<span class="fc" id="L53">      throw new IllegalArgumentException(&quot;Invalid id:&quot; + id);</span>
+    }
+<span class="fc" id="L55">    return result;</span>
+  }
+
+  /**
+   * Update list.
+   *
+   * @param id          the id
+   * @param ratingParam the rating param
+   * @return the list
+   */
+  @Override
+  public List&lt;Rating&gt; update(final Integer id, final Rating ratingParam) {
+<span class="fc" id="L67">    Rating ratingLocal = this.getRatingById(id);</span>
+<span class="fc" id="L68">    ratingLocal.setFitchRating(ratingParam.getFitchRating());</span>
+<span class="fc" id="L69">    ratingLocal.setSandPRating(ratingParam.getSandPRating());</span>
+<span class="fc" id="L70">    ratingLocal.setMoodysRating(ratingParam.getMoodysRating());</span>
+<span class="fc" id="L71">    ratingLocal.setOrderNumber(ratingParam.getOrderNumber());</span>
+<span class="fc" id="L72">    repository.save(ratingLocal);</span>
+<span class="fc" id="L73">    return this.findAll();</span>
+  }
+
+  /**
+   * Delete list.
+   *
+   * @param id the id
+   * @return the list
+   */
+  @Override
+  public List&lt;Rating&gt; delete(final Integer id) {
+<span class="fc" id="L84">    Rating ratingLocal = this.getRatingById(id);</span>
+<span class="fc" id="L85">    repository.delete(ratingLocal);</span>
+<span class="fc" id="L86">    return this.findAll();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

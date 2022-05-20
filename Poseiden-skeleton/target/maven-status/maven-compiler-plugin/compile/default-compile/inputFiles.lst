@@ -3,6 +3,7 @@ G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-ske
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\RuleName.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\TradeController.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\RuleNameRepository.java
+G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\Oauth2Service.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\RatingServiceImpl.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\Application.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\TradeRepository.java
@@ -12,6 +13,7 @@ G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-ske
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\CurvePoint.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\CurveController.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Rating.java
+G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\CustomOAuth2User.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\SpringSecurityConfig.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\BidListServiceImpl.java
 G:\OpenClassroom\DevAppJava\P7_chasles_gino\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\RatingService.java

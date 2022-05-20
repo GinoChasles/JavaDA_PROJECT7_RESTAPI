@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Trade.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.domain</a> &gt; <span class="el_source">Trade.java</span></div><h1>Trade.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.domain;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import java.sql.Timestamp;
+
+
+@Entity
+@Table(name = &quot;trade&quot;)
+public class Trade {
+    // TODO: Map columns in data table TRADE with corresponding java fields
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = &quot;trade_id&quot;)
+  @Positive(message = &quot;must be positive&quot;)
+  private Integer tradeId;
+
+  private String account;
+  private String type;
+  //TODO: validation
+  @Column(name = &quot;buy_quantity&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double buyQuantity;
+
+  @Column(name = &quot;sell_quantity&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double sellQuantity;
+
+  @Column(name = &quot;buy_price&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double buyPrice;
+
+  @Column(name = &quot;sell_price&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double sellPrice;
+
+  private String benchmark;
+
+  @Column(name = &quot;trade_date&quot;)
+  private Timestamp tradeDate;
+
+  private String security;
+  private String status;
+  private String trader;
+  private String book;
+  @Column(name = &quot;creation_name&quot;)
+  private String creationName;
+
+  @Column(name = &quot;creation_date&quot;)
+  private Timestamp creationDate;
+
+  @Column(name = &quot;revision_name&quot;)
+  private String revisionName;
+
+  @Column(name = &quot;revision_date&quot;)
+  private Timestamp revisionDate;
+
+  @Column(name = &quot;deal_name&quot;)
+  private String dealName;
+
+  @Column(name = &quot;deal_type&quot;)
+  private String dealType;
+
+  @Column(name = &quot;source_list_id&quot;)
+  private String sourceListId;
+
+  private String side;
+
+<span class="fc" id="L71">  public Trade() {</span>
+<span class="fc" id="L72">  }</span>
+
+<span class="fc" id="L74">  public Trade(final String accountParam, final String typeParam) {</span>
+<span class="fc" id="L75">    account = accountParam;</span>
+<span class="fc" id="L76">    type = typeParam;</span>
+<span class="fc" id="L77">  }</span>
+
+<span class="fc" id="L79">  public Trade(Integer tradeId, String account, String type, double buyQuantity) {</span>
+<span class="fc" id="L80">    this.tradeId = tradeId;</span>
+<span class="fc" id="L81">    this.account = account;</span>
+<span class="fc" id="L82">    this.type = type;</span>
+<span class="fc" id="L83">    this.buyQuantity = buyQuantity;</span>
+<span class="fc" id="L84">  }</span>
+
+<span class="fc" id="L86">  public Trade(String account, String type, double buyQuantity) {</span>
+<span class="fc" id="L87">    this.account = account;</span>
+<span class="fc" id="L88">    this.type = type;</span>
+<span class="fc" id="L89">    this.buyQuantity = buyQuantity;</span>
+<span class="fc" id="L90">  }</span>
+
+  public Integer getTradeId() {
+<span class="fc" id="L93">    return tradeId;</span>
+  }
+
+  public void setTradeId(final Integer tradeIdParam) {
+<span class="fc" id="L97">    tradeId = tradeIdParam;</span>
+<span class="fc" id="L98">  }</span>
+
+  public String getAccount() {
+<span class="fc" id="L101">    return account;</span>
+  }
+
+  public void setAccount(final String accountParam) {
+<span class="fc" id="L105">    account = accountParam;</span>
+<span class="fc" id="L106">  }</span>
+
+  public String getType() {
+<span class="fc" id="L109">    return type;</span>
+  }
+
+  public void setType(final String typeParam) {
+<span class="fc" id="L113">    type = typeParam;</span>
+<span class="fc" id="L114">  }</span>
+
+  public double getBuyQuantity() {
+<span class="fc" id="L117">    return buyQuantity;</span>
+  }
+
+  public void setBuyQuantity(final double buyQuantityParam) {
+<span class="fc" id="L121">    buyQuantity = buyQuantityParam;</span>
+<span class="fc" id="L122">  }</span>
+
+  public double getSellQuantity() {
+<span class="nc" id="L125">    return sellQuantity;</span>
+  }
+
+  public void setSellQuantity(final double sellQuantityParam) {
+<span class="nc" id="L129">    sellQuantity = sellQuantityParam;</span>
+<span class="nc" id="L130">  }</span>
+
+  public double getBuyPrice() {
+<span class="nc" id="L133">    return buyPrice;</span>
+  }
+
+  public void setBuyPrice(final double buyPriceParam) {
+<span class="nc" id="L137">    buyPrice = buyPriceParam;</span>
+<span class="nc" id="L138">  }</span>
+
+  public double getSellPrice() {
+<span class="nc" id="L141">    return sellPrice;</span>
+  }
+
+  public void setSellPrice(final double sellPriceParam) {
+<span class="nc" id="L145">    sellPrice = sellPriceParam;</span>
+<span class="nc" id="L146">  }</span>
+
+  public String getBenchmark() {
+<span class="nc" id="L149">    return benchmark;</span>
+  }
+
+  public void setBenchmark(final String benchmarkParam) {
+<span class="nc" id="L153">    benchmark = benchmarkParam;</span>
+<span class="nc" id="L154">  }</span>
+
+  public Timestamp getTradeDate() {
+<span class="nc" id="L157">    return tradeDate;</span>
+  }
+
+  public void setTradeDate(final Timestamp tradeDateParam) {
+<span class="nc" id="L161">    tradeDate = tradeDateParam;</span>
+<span class="nc" id="L162">  }</span>
+
+  public String getSecurity() {
+<span class="nc" id="L165">    return security;</span>
+  }
+
+  public void setSecurity(final String securityParam) {
+<span class="nc" id="L169">    security = securityParam;</span>
+<span class="nc" id="L170">  }</span>
+
+  public String getStatus() {
+<span class="nc" id="L173">    return status;</span>
+  }
+
+  public void setStatus(final String statusParam) {
+<span class="nc" id="L177">    status = statusParam;</span>
+<span class="nc" id="L178">  }</span>
+
+  public String getTrader() {
+<span class="nc" id="L181">    return trader;</span>
+  }
+
+  public void setTrader(final String traderParam) {
+<span class="nc" id="L185">    trader = traderParam;</span>
+<span class="nc" id="L186">  }</span>
+
+  public String getBook() {
+<span class="nc" id="L189">    return book;</span>
+  }
+
+  public void setBook(final String bookParam) {
+<span class="nc" id="L193">    book = bookParam;</span>
+<span class="nc" id="L194">  }</span>
+
+  public String getCreationName() {
+<span class="nc" id="L197">    return creationName;</span>
+  }
+
+  public void setCreationName(final String creationNameParam) {
+<span class="nc" id="L201">    creationName = creationNameParam;</span>
+<span class="nc" id="L202">  }</span>
+
+  public Timestamp getCreationDate() {
+<span class="nc" id="L205">    return creationDate;</span>
+  }
+
+  public void setCreationDate(final Timestamp creationDateParam) {
+<span class="nc" id="L209">    creationDate = creationDateParam;</span>
+<span class="nc" id="L210">  }</span>
+
+  public String getRevisionName() {
+<span class="nc" id="L213">    return revisionName;</span>
+  }
+
+  public void setRevisionName(final String revisionNameParam) {
+<span class="nc" id="L217">    revisionName = revisionNameParam;</span>
+<span class="nc" id="L218">  }</span>
+
+  public Timestamp getRevisionDate() {
+<span class="nc" id="L221">    return revisionDate;</span>
+  }
+
+  public void setRevisionDate(final Timestamp revisionDateParam) {
+<span class="nc" id="L225">    revisionDate = revisionDateParam;</span>
+<span class="nc" id="L226">  }</span>
+
+  public String getDealName() {
+<span class="nc" id="L229">    return dealName;</span>
+  }
+
+  public void setDealName(final String dealNameParam) {
+<span class="nc" id="L233">    dealName = dealNameParam;</span>
+<span class="nc" id="L234">  }</span>
+
+  public String getDealType() {
+<span class="nc" id="L237">    return dealType;</span>
+  }
+
+  public void setDealType(final String dealTypeParam) {
+<span class="nc" id="L241">    dealType = dealTypeParam;</span>
+<span class="nc" id="L242">  }</span>
+
+  public String getSourceListId() {
+<span class="nc" id="L245">    return sourceListId;</span>
+  }
+
+  public void setSourceListId(final String sourceListIdParam) {
+<span class="nc" id="L249">    sourceListId = sourceListIdParam;</span>
+<span class="nc" id="L250">  }</span>
+
+  public String getSide() {
+<span class="nc" id="L253">    return side;</span>
+  }
+
+  public void setSide(final String sideParam) {
+<span class="nc" id="L257">    side = sideParam;</span>
+<span class="nc" id="L258">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

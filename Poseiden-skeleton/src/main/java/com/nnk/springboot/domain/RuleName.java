@@ -11,7 +11,7 @@ public class RuleName {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+  @NotBlank(message = "Le nom est requis")
     private String name;
     private String description;
     private String json;

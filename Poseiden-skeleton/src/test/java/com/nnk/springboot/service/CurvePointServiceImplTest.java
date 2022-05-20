@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -52,6 +53,12 @@ public class CurvePointServiceImplTest {
         when(curvePointRepository.findById(anyInt())).thenReturn(Optional.of(curvePoint));
         CurvePoint result = curvePointService.getCurvePointById(curvePoint.getId());
         assertThat(result.getTerm()).isEqualTo(11.0);
+    }
+    @Test
+    public void getCurvePointByIdTest_ShouldThrowException() {
+        when(curvePointRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IllegalArgumentException.class,()-> curvePointService.getCurvePointById(1));
     }
     @Test
     public void updateTest() {

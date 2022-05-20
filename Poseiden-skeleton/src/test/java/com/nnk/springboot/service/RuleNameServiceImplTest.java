@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RuleNameTest {
+public class RuleNameServiceImplTest {
 
     @InjectMocks
     private RuleNameServiceImpl ruleNameService;
@@ -53,6 +54,12 @@ public class RuleNameTest {
         when(ruleNameRepository.findById(anyInt())).thenReturn(Optional.of(ruleName));
         RuleName result = ruleNameService.getRuleNamById(ruleName.getId());
         assertThat(result.getName()).isEqualTo("test");
+    }
+    @Test
+    public void getCurvePointByIdTest_ShouldThrowException() {
+        when(ruleNameRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IllegalArgumentException.class,()-> ruleNameService.getRuleNamById(1));
     }
     @Test
     public void updateTest() {

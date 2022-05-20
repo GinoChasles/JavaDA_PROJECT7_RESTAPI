@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BidList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.domain</a> &gt; <span class="el_source">BidList.java</span></div><h1>BidList.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.domain;
+
+import org.springframework.beans.factory.annotation.Required;
+
+import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
+import java.sql.Timestamp;
+
+@Entity
+@Table(name = &quot;bidlist&quot;)
+public class BidList {
+  // TODO: Map columns in data table BIDLIST with corresponding java fields
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = &quot;bid_list_id&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private Integer BidListId;
+
+  @Column(name = &quot;account&quot;)
+  private String account;
+
+  @Column(name = &quot;type&quot;)
+  private String type;
+
+  @Column(name = &quot;bid_quantity&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double bidQuantity;
+
+  @Column(name = &quot;ask_quantity&quot;)
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double askQuantity;
+
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double bid;
+
+  @PositiveOrZero(message = &quot;must be positive or equals to 0&quot;)
+  private double ask;
+
+  private String benchmark;
+
+  @Column(name = &quot;bid_list_date&quot;)
+  private Timestamp bidListDate;
+  private String commentary;
+  private String security;
+  private String status;
+  private String trader;
+  private String book;
+
+  @Column(name = &quot;creation_name&quot;)
+  private String creationName;
+
+  @Column(name = &quot;creation_date&quot;)
+  private Timestamp creationDate;
+
+  @Column(name = &quot;revision_name&quot;)
+  private String revisionName;
+
+  @Column(name = &quot;revision_date&quot;)
+  private Timestamp revisionDate;
+  private String dealName;
+  private String dealType;
+
+  @Column(name = &quot;source_list_id&quot;)
+  private String sourceListId;
+  private String side;
+
+
+<span class="fc" id="L68">  public BidList() {</span>
+<span class="fc" id="L69">  }</span>
+
+  public BidList(final int bidListIdParam, final String accountParam, final String typeParam,
+<span class="fc" id="L72">                 final double bidQuantityParam) {</span>
+<span class="fc" id="L73">    BidListId = bidListIdParam;</span>
+<span class="fc" id="L74">    account = accountParam;</span>
+<span class="fc" id="L75">    type = typeParam;</span>
+<span class="fc" id="L76">    bidQuantity = bidQuantityParam;</span>
+<span class="fc" id="L77">  }</span>
+
+<span class="fc" id="L79">  public BidList(final String accountParam, final String typeParam, final double bidQuantityParam) {</span>
+<span class="fc" id="L80">    account = accountParam;</span>
+<span class="fc" id="L81">    type = typeParam;</span>
+<span class="fc" id="L82">    bidQuantity = bidQuantityParam;</span>
+<span class="fc" id="L83">  }</span>
+
+  public Integer getBidListId() {
+<span class="fc" id="L86">    return BidListId;</span>
+  }
+
+  public void setAskQuantity(final double askQuantityParam) {
+<span class="nc" id="L90">    askQuantity = askQuantityParam;</span>
+<span class="nc" id="L91">  }</span>
+
+  public void setBid(final double bidParam) {
+<span class="nc" id="L94">    bid = bidParam;</span>
+<span class="nc" id="L95">  }</span>
+
+  public void setAsk(final double askParam) {
+<span class="nc" id="L98">    ask = askParam;</span>
+<span class="nc" id="L99">  }</span>
+
+  public String getAccount() {
+<span class="fc" id="L102">    return account;</span>
+  }
+
+  public void setAccount(final String accountParam) {
+<span class="fc" id="L106">    account = accountParam;</span>
+<span class="fc" id="L107">  }</span>
+
+  public String getType() {
+<span class="fc" id="L110">    return type;</span>
+  }
+
+  public void setType(final String typeParam) {
+<span class="fc" id="L114">    type = typeParam;</span>
+<span class="fc" id="L115">  }</span>
+
+  public double getBidQuantity() {
+<span class="fc" id="L118">    return bidQuantity;</span>
+  }
+
+  public void setBidQuantity(final double bidQuantityParam) {
+<span class="fc" id="L122">    bidQuantity = bidQuantityParam;</span>
+<span class="fc" id="L123">  }</span>
+
+  public void setBidListId(final Integer bidListIdParam) {
+<span class="fc" id="L126">    BidListId = bidListIdParam;</span>
+<span class="fc" id="L127">  }</span>
+
+  public void setBidQuantity(final Double bidQuantityParam) {
+<span class="nc" id="L130">    bidQuantity = bidQuantityParam;</span>
+<span class="nc" id="L131">  }</span>
+
+  public Double getAskQuantity() {
+<span class="nc" id="L134">    return askQuantity;</span>
+  }
+
+  public void setAskQuantity(final Double askQuantityParam) {
+<span class="nc" id="L138">    askQuantity = askQuantityParam;</span>
+<span class="nc" id="L139">  }</span>
+
+  public Double getBid() {
+<span class="nc" id="L142">    return bid;</span>
+  }
+
+  public void setBid(final Double bidParam) {
+<span class="nc" id="L146">    bid = bidParam;</span>
+<span class="nc" id="L147">  }</span>
+
+  public Double getAsk() {
+<span class="nc" id="L150">    return ask;</span>
+  }
+
+  public void setAsk(final Double askParam) {
+<span class="nc" id="L154">    ask = askParam;</span>
+<span class="nc" id="L155">  }</span>
+
+  public String getBenchmark() {
+<span class="nc" id="L158">    return benchmark;</span>
+  }
+
+  public void setBenchmark(final String benchmarkParam) {
+<span class="nc" id="L162">    benchmark = benchmarkParam;</span>
+<span class="nc" id="L163">  }</span>
+
+  public Timestamp getBidListDate() {
+<span class="nc" id="L166">    return bidListDate;</span>
+  }
+
+  public void setBidListDate(final Timestamp bidListDateParam) {
+<span class="nc" id="L170">    bidListDate = bidListDateParam;</span>
+<span class="nc" id="L171">  }</span>
+
+  public String getCommentary() {
+<span class="nc" id="L174">    return commentary;</span>
+  }
+
+  public void setCommentary(final String commentaryParam) {
+<span class="nc" id="L178">    commentary = commentaryParam;</span>
+<span class="nc" id="L179">  }</span>
+
+  public String getSecurity() {
+<span class="nc" id="L182">    return security;</span>
+  }
+
+  public void setSecurity(final String securityParam) {
+<span class="nc" id="L186">    security = securityParam;</span>
+<span class="nc" id="L187">  }</span>
+
+  public String getStatus() {
+<span class="nc" id="L190">    return status;</span>
+  }
+
+  public void setStatus(final String statusParam) {
+<span class="nc" id="L194">    status = statusParam;</span>
+<span class="nc" id="L195">  }</span>
+
+  public String getTrader() {
+<span class="nc" id="L198">    return trader;</span>
+  }
+
+  public void setTrader(final String traderParam) {
+<span class="nc" id="L202">    trader = traderParam;</span>
+<span class="nc" id="L203">  }</span>
+
+  public String getBook() {
+<span class="nc" id="L206">    return book;</span>
+  }
+
+  public void setBook(final String bookParam) {
+<span class="nc" id="L210">    book = bookParam;</span>
+<span class="nc" id="L211">  }</span>
+
+  public String getCreationName() {
+<span class="nc" id="L214">    return creationName;</span>
+  }
+
+  public void setCreationName(final String creationNameParam) {
+<span class="nc" id="L218">    creationName = creationNameParam;</span>
+<span class="nc" id="L219">  }</span>
+
+  public Timestamp getCreationDate() {
+<span class="nc" id="L222">    return creationDate;</span>
+  }
+
+  public void setCreationDate(final Timestamp creationDateParam) {
+<span class="nc" id="L226">    creationDate = creationDateParam;</span>
+<span class="nc" id="L227">  }</span>
+
+  public String getRevisionName() {
+<span class="nc" id="L230">    return revisionName;</span>
+  }
+
+  public void setRevisionName(final String revisionNameParam) {
+<span class="nc" id="L234">    revisionName = revisionNameParam;</span>
+<span class="nc" id="L235">  }</span>
+
+  public Timestamp getRevisionDate() {
+<span class="nc" id="L238">    return revisionDate;</span>
+  }
+
+  public void setRevisionDate(final Timestamp revisionDateParam) {
+<span class="nc" id="L242">    revisionDate = revisionDateParam;</span>
+<span class="nc" id="L243">  }</span>
+
+  public String getDealName() {
+<span class="nc" id="L246">    return dealName;</span>
+  }
+
+  public void setDealName(final String dealNameParam) {
+<span class="nc" id="L250">    dealName = dealNameParam;</span>
+<span class="nc" id="L251">  }</span>
+
+  public String getDealType() {
+<span class="nc" id="L254">    return dealType;</span>
+  }
+
+  public void setDealType(final String dealTypeParam) {
+<span class="nc" id="L258">    dealType = dealTypeParam;</span>
+<span class="nc" id="L259">  }</span>
+
+  public String getSourceListId() {
+<span class="nc" id="L262">    return sourceListId;</span>
+  }
+
+  public void setSourceListId(final String sourceListIdParam) {
+<span class="nc" id="L266">    sourceListId = sourceListIdParam;</span>
+<span class="nc" id="L267">  }</span>
+
+  public String getSide() {
+<span class="nc" id="L270">    return side;</span>
+  }
+
+  public void setSide(final String sideParam) {
+<span class="nc" id="L274">    side = sideParam;</span>
+<span class="nc" id="L275">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

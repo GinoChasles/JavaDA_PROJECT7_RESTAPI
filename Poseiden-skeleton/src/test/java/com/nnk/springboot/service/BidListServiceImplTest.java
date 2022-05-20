@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -54,6 +55,12 @@ public class BidListServiceImplTest {
         BidList result = bidListService.getBidListById(1);
 
         assertThat(result.getAccount()).isEqualTo(bidList.getAccount());
+    }
+    @Test
+    public void findByIdBidListTest_ShouldThrowException() {
+        when(bidListRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IllegalArgumentException.class,()-> bidListService.getBidListById(1));
     }
 
     @Test

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -48,23 +49,29 @@ public class TradeServiceImplTest {
     }
 
     @Test
-    public void getCurvePointByIdTest() {
+    public void getTradeByIdTest() {
         when(tradeRepository.findById(anyInt())).thenReturn(Optional.of(trade));
         Trade result = tradeService.getTradeById(trade.getTradeId());
         assertThat(result.getBuyQuantity()).isEqualTo(11.0);
     }
     @Test
+    public void getTradeByIdTest_ShouldThrowException() {
+        when(tradeRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IllegalArgumentException.class,()-> tradeService.getTradeById(1));
+    }
+    @Test
     public void updateTest() {
         when(tradeRepository.findById(anyInt())).thenReturn(Optional.of(trade));
-        Trade curvePointToUpdate = trade;
-        curvePointToUpdate.setBuyQuantity(15.0);
-        when(tradeRepository.save(any(Trade.class))).thenReturn(curvePointToUpdate);
+        Trade trade = this.trade;
+        trade.setBuyQuantity(15.0);
+        when(tradeRepository.save(any(Trade.class))).thenReturn(trade);
 
         List<Trade> curvePointList1 = new ArrayList<>();
-        curvePointList1.add(curvePointToUpdate);
+        curvePointList1.add(trade);
         when(tradeRepository.findAll()).thenReturn(curvePointList1);
 
-        List<Trade> curvePointList = tradeService.update(trade.getTradeId(), curvePointToUpdate);
+        List<Trade> curvePointList = tradeService.update(this.trade.getTradeId(), trade);
         assertThat(curvePointList.get(0).getBuyQuantity()).isEqualTo(15.0);
     }
     @Test

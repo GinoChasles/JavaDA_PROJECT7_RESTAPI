@@ -50,6 +50,8 @@ public class CurvePointServiceImpl implements CurvePointService {
     CurvePoint result = new CurvePoint();
     if(optionalCurvePointLocal.isPresent()) {
       result = optionalCurvePointLocal.get();
+    } else {
+      throw new IllegalArgumentException("Invalid id:" + id);
     }
     return result;
   }

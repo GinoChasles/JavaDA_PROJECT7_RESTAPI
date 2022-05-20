@@ -50,6 +50,8 @@ public class RuleNameServiceImpl implements RuleNameService{
     RuleName result = new RuleName();
     if(ruleNameLocal.isPresent()) {
       result = ruleNameLocal.get();
+    } else {
+      throw new IllegalArgumentException("Invalid id:" + id);
     }
     return result;
   }

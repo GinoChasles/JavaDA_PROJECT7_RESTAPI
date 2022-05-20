@@ -39,6 +39,8 @@ public class BidListServiceImpl implements BidListService {
 
     if(optionalBidListLocal.isPresent()) {
       result = optionalBidListLocal.get();
+    } else {
+      throw new IllegalArgumentException("Invalid id:" + id);
     }
 
     return result;

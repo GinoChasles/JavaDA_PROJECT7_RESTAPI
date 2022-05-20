@@ -49,6 +49,8 @@ public class RatingServiceImpl implements RatingService{
     Rating result = new Rating();
     if(optionalRatingLocal.isPresent()) {
       result = optionalRatingLocal.get();
+    } else {
+      throw new IllegalArgumentException("Invalid id:" + id);
     }
     return result;
   }
